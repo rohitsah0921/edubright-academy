@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduBright Academy – Learn Without Limits</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --amber: #e8a020;
+    --amber-dark: #c4841a;
+    --rust: #c94b2c;
+    --teal: #1a7a6e;
+    --light: #faf8f3;
+    --muted: #6b6557;
+    --border: #ddd8cc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    animation: slideDown .6s ease both;
+  }
+  @keyframes slideDown { from { transform: translateY(-100%); opacity:0; } to { transform: none; opacity:1; } }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--ink); text-decoration: none;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .nav-logo span { color: var(--amber); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: .9rem; font-weight: 500;
+    color: var(--muted); letter-spacing: .02em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--ink); color: var(--cream);
+    padding: .6rem 1.4rem; border-radius: 2rem;
+    text-decoration: none; font-size: .85rem; font-weight: 600;
+    letter-spacing: .03em; transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--amber); color: var(--ink); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5% 4rem;
+    gap: 3rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 75% 40%, rgba(232,160,32,.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(26,122,110,.08) 0%, transparent 60%);
+  }
+  .hero-grain {
+    position: absolute; inset: 0; z-index: 1; opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--amber); color: var(--ink);
+    padding: .35rem .9rem; border-radius: 2rem;
+    font-size: .78rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    animation: fadeUp .7s .2s both;
+  }
+
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 900; line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp .7s .35s both;
+  }
+  .hero-h1 em { font-style: italic; color: var(--rust); }
+
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+    max-width: 480px; margin-bottom: 2.5rem;
+    animation: fadeUp .7s .5s both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp .7s .65s both;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: .85rem 2rem; border-radius: 2rem;
+    text-decoration: none; font-weight: 600; font-size: .95rem;
+    transition: background .2s, transform .15s;
+  }
+  .btn-primary:hover { background: var(--amber); color: var(--ink); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1.5px solid var(--ink); color: var(--ink);
+    padding: .85rem 2rem; border-radius: 2rem;
+    text-decoration: none; font-weight: 600; font-size: .95rem;
+    transition: background .2s, transform .15s;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    animation: fadeUp .7s .8s both;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--ink);
+  }
+  .stat-lbl { font-size: .8rem; color: var(--muted); font-weight: 500; margin-top: .15rem; }
+
+  .hero-visual {
+    position: relative; z-index: 2;
+    animation: fadeUp .7s .4s both;
+  }
+  .hero-card-stack { position: relative; height: 480px; }
+
+  .hcard {
+    position: absolute;
+    background: white;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,.1);
+    padding: 1.5rem;
+    transition: transform .3s;
+  }
+  .hcard:hover { transform: translateY(-4px); }
+
+  .hcard-main {
+    width: 320px; top: 40px; left: 0;
+    border: 1.5px solid var(--border);
+  }
+  .hcard-pill {
+    display: inline-flex; gap: .4rem; align-items: center;
+    background: var(--cream); border-radius: 2rem;
+    padding: .3rem .7rem; font-size: .75rem; font-weight: 600;
+    color: var(--teal); margin-bottom: 1rem;
+  }
+  .hcard-img {
+    width: 100%; height: 160px;
+    background: linear-gradient(135deg, var(--teal) 0%, #2db8a5 100%);
+    border-radius: .8rem; margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+  }
+  .hcard-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+  .hcard-meta { font-size: .8rem; color: var(--muted); }
+
+  .hcard-progress {
+    width: 220px; bottom: 80px; right: 0;
+    border: 1.5px solid var(--border);
+  }
+  .progress-label { font-size: .78rem; font-weight: 600; margin-bottom: .6rem; }
+  .progress-bar { height: 6px; background: var(--cream); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--amber), var(--rust)); border-radius: 3px; width: 68%; }
+  .progress-pct { font-size: .75rem; color: var(--muted); margin-top: .4rem; }
+
+  .hcard-review {
+    width: 200px; top: 20px; right: -10px;
+    border: 1.5px solid var(--border);
+    text-align: center;
+  }
+  .review-stars { color: var(--amber); font-size: 1rem; letter-spacing: 2px; }
+  .review-score { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; }
+  .review-count { font-size: .75rem; color: var(--muted); }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 5%; }
+  .section-label {
+    font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: .75rem;
+  }
+  .section-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); line-height: 1.7; max-width: 520px; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ink); color: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  #about .section-label { color: var(--amber); }
+  #about .section-h2 { color: var(--cream); }
+  #about .section-sub { color: rgba(245,240,232,.65); }
+
+  .about-features { margin-top: 2.5rem; display: grid; gap: 1.5rem; }
+  .about-feat {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .feat-icon {
+    width: 44px; height: 44px; border-radius: .6rem;
+    background: rgba(232,160,32,.15); border: 1px solid rgba(232,160,32,.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .feat-title { font-weight: 600; font-size: .95rem; margin-bottom: .3rem; }
+  .feat-desc { font-size: .85rem; color: rgba(245,240,232,.6); line-height: 1.6; }
+
+  .about-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .about-block {
+    background: rgba(245,240,232,.06);
+    border: 1px solid rgba(245,240,232,.1);
+    border-radius: 1rem; padding: 1.5rem;
+  }
+  .about-block-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; color: var(--amber);
+  }
+  .about-block-lbl { font-size: .82rem; color: rgba(245,240,232,.6); margin-top: .3rem; }
+  .about-block.tall { grid-row: span 2; display: flex; flex-direction: column; justify-content: flex-end; }
+  .about-block.tall .about-block-num { font-size: 3.5rem; }
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1rem; line-height: 1.6;
+    color: rgba(245,240,232,.8); margin-bottom: 1rem;
+  }
+
+  /* ── COURSES ── */
+  #courses { background: var(--cream); }
+  .courses-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .courses-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+
+  .course-card {
+    background: white; border-radius: 1.2rem;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+    cursor: pointer;
+  }
+  .course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.1);
+  }
+  .course-thumb {
+    height: 180px; display: flex; align-items: center;
+    justify-content: center; font-size: 3.5rem;
+    position: relative;
+  }
+  .course-thumb.teal { background: linear-gradient(135deg, #1a7a6e 0%, #2db8a5 100%); }
+  .course-thumb.amber { background: linear-gradient(135deg, #c4841a 0%, #e8a020 100%); }
+  .course-thumb.rust { background: linear-gradient(135deg, #9b3520 0%, #c94b2c 100%); }
+  .course-thumb.slate { background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); }
+  .course-thumb.emerald { background: linear-gradient(135deg, #065f46 0%, #059669 100%); }
+  .course-thumb.violet { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); }
+
+  .course-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: rgba(255,255,255,.2); backdrop-filter: blur(6px);
+    color: white; font-size: .7rem; font-weight: 700;
+    padding: .25rem .7rem; border-radius: 2rem; letter-spacing: .04em;
+  }
+
+  .course-body { padding: 1.4rem; }
+  .course-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; margin-bottom: .5rem; line-height: 1.3; }
+  .course-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .course-meta { display: flex; justify-content: space-between; align-items: center; }
+  .course-rating { display: flex; align-items: center; gap: .3rem; font-size: .8rem; font-weight: 600; }
+  .course-rating .star { color: var(--amber); }
+  .course-duration { font-size: .78rem; color: var(--muted); }
+  .course-price {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 1.1rem; color: var(--teal); margin-top: .8rem;
+    padding-top: .8rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .enroll-btn {
+    background: var(--ink); color: var(--cream);
+    padding: .4rem 1rem; border-radius: 2rem;
+    font-size: .78rem; font-weight: 600; border: none;
+    cursor: pointer; transition: background .2s;
+  }
+  .enroll-btn:hover { background: var(--amber); color: var(--ink); }
+
+  /* ── SERVICES / HOW ── */
+  #services { background: var(--light); }
+  .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .service-card {
+    padding: 2rem 1.5rem; border-radius: 1.2rem;
+    border: 1.5px solid var(--border); background: white;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+  .service-icon {
+    width: 56px; height: 56px; border-radius: .8rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 1.2rem;
+  }
+  .si-amber { background: rgba(232,160,32,.12); }
+  .si-teal { background: rgba(26,122,110,.12); }
+  .si-rust { background: rgba(201,75,44,.12); }
+  .si-dark { background: rgba(13,13,13,.08); }
+  .service-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; margin-bottom: .6rem; }
+  .service-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--cream); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .testi-card {
+    background: white; border: 1.5px solid var(--border);
+    border-radius: 1.2rem; padding: 2rem;
+    transition: transform .3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); }
+  .testi-stars { color: var(--amber); font-size: 1rem; margin-bottom: 1rem; }
+  .testi-text { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: .8rem; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; font-weight: 700; color: white;
+    flex-shrink: 0;
+  }
+  .av-1 { background: var(--teal); }
+  .av-2 { background: var(--rust); }
+  .av-3 { background: var(--amber); color: var(--ink); }
+  .av-4 { background: #4c1d95; }
+  .av-5 { background: #065f46; }
+  .av-6 { background: #9b3520; }
+  .testi-name { font-weight: 600; font-size: .9rem; }
+  .testi-role { font-size: .78rem; color: var(--muted); }
+
+  /* ── INSTRUCTORS ── */
+  #instructors { background: var(--light); }
+  .inst-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .inst-card {
+    background: white; border: 1.5px solid var(--border);
+    border-radius: 1.2rem; overflow: hidden;
+    text-align: center; padding-bottom: 1.5rem;
+    transition: transform .3s;
+  }
+  .inst-card:hover { transform: translateY(-4px); }
+  .inst-photo {
+    height: 140px; display: flex; align-items: center;
+    justify-content: center; font-size: 3rem;
+  }
+  .ip-1 { background: linear-gradient(135deg, #1a7a6e, #2db8a5); }
+  .ip-2 { background: linear-gradient(135deg, #c4841a, #e8a020); }
+  .ip-3 { background: linear-gradient(135deg, #4c1d95, #7c3aed); }
+  .ip-4 { background: linear-gradient(135deg, #9b3520, #c94b2c); }
+  .inst-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; margin: 1rem 0 .25rem; }
+  .inst-role { font-size: .78rem; color: var(--muted); }
+  .inst-courses { font-size: .75rem; color: var(--teal); font-weight: 600; margin-top: .5rem; }
+
+  /* ── CTA BANNER ── */
+  #cta {
+    background: var(--ink);
+    text-align: center; padding: 6rem 5%;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,32,.15) 0%, transparent 70%);
+  }
+  .cta-label { color: var(--amber); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem; }
+  .cta-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900; color: var(--cream); margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .cta-sub { color: rgba(245,240,232,.65); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .cta-form {
+    display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap;
+    position: relative;
+  }
+  .cta-input {
+    padding: .9rem 1.5rem; border-radius: 2rem; border: 1.5px solid rgba(245,240,232,.2);
+    background: rgba(245,240,232,.08); color: var(--cream);
+    font-family: 'DM Sans', sans-serif; font-size: .95rem;
+    width: 300px; outline: none;
+    transition: border-color .2s;
+  }
+  .cta-input::placeholder { color: rgba(245,240,232,.4); }
+  .cta-input:focus { border-color: var(--amber); }
+  .cta-submit {
+    background: var(--amber); color: var(--ink);
+    padding: .9rem 2rem; border-radius: 2rem;
+    border: none; font-weight: 700; font-size: .95rem;
+    cursor: pointer; transition: background .2s, transform .15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .cta-submit:hover { background: white; transform: translateY(-2px); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .contact-info p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; font-size: .9rem; }
+  .contact-items { display: grid; gap: 1.2rem; }
+  .contact-item {
+    display: flex; gap: 1rem; align-items: center;
+  }
+  .ci-icon {
+    width: 44px; height: 44px; border-radius: .6rem;
+    background: var(--amber); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .ci-label { font-size: .75rem; color: var(--muted); font-weight: 500; }
+  .ci-val { font-size: .9rem; font-weight: 600; }
+
+  .contact-form { display: grid; gap: 1rem; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cf-field {
+    display: flex; flex-direction: column; gap: .4rem;
+  }
+  .cf-label { font-size: .78rem; font-weight: 600; color: var(--muted); letter-spacing: .03em; }
+  .cf-input, .cf-select, .cf-textarea {
+    padding: .8rem 1rem; border-radius: .6rem;
+    border: 1.5px solid var(--border); background: white;
+    font-family: 'DM Sans', sans-serif; font-size: .9rem;
+    outline: none; transition: border-color .2s;
+  }
+  .cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--amber); }
+  .cf-textarea { resize: vertical; min-height: 120px; }
+  .cf-btn {
+    background: var(--ink); color: var(--cream);
+    padding: .9rem; border-radius: .6rem; border: none;
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    font-size: .95rem; cursor: pointer; transition: background .2s;
+  }
+  .cf-btn:hover { background: var(--amber); color: var(--ink); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(245,240,232,.7);
+    padding: 4rem 5% 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { color: var(--cream); margin-bottom: 1rem; display: block; }
+  .footer-brand p { font-size: .85rem; line-height: 1.7; max-width: 260px; }
+  .footer-col h4 { color: var(--cream); font-size: .85rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: grid; gap: .7rem; }
+  .footer-col li a { text-decoration: none; color: rgba(245,240,232,.6); font-size: .85rem; transition: color .2s; }
+  .footer-col li a:hover { color: var(--amber); }
+  .footer-bottom {
+    border-top: 1px solid rgba(245,240,232,.1);
+    padding-top: 2rem; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: .82rem; }
+  .social-links { display: flex; gap: .8rem; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(245,240,232,.08); border: 1px solid rgba(245,240,232,.15);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: .9rem;
+    transition: background .2s;
+  }
+  .social-link:hover { background: var(--amber); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    #home { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    #about { grid-template-columns: 1fr; }
+    .courses-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid, .inst-grid { grid-template-columns: 1fr 1fr; }
+    #contact { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 560px) {
+    .courses-grid, .testi-grid, .services-grid, .inst-grid { grid-template-columns: 1fr; }
+    .cf-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Edu<span>Bright</span> Academy</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get Started →</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-text">
+    <div class="hero-badge">🎓 #1 Online Academy 2025</div>
+    <h1 class="hero-h1">Learn Skills That <em>Actually</em> Matter</h1>
+    <p class="hero-sub">EduBright Academy delivers world-class courses in technology, business, design, and beyond — taught by industry experts, at your own pace.</p>
+    <div class="hero-actions">
+      <a href="#courses" class="btn-primary">Explore Courses</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">50K+</div>
+        <div class="stat-lbl">Active Students</div>
+      </div>
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-lbl">Expert Courses</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-lbl">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="hcard hcard-main">
+        <div class="hcard-pill">🚀 Most Popular</div>
+        <div class="hcard-img">💡</div>
+        <div class="hcard-title">Full-Stack Web Development</div>
+        <div class="hcard-meta">⭐ 4.9 · 12,400 students · 48 hrs</div>
+      </div>
+      <div class="hcard hcard-progress">
+        <div class="progress-label">Your Progress — React Module</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="progress-pct">68% complete · 4 hrs left</div>
+      </div>
+      <div class="hcard hcard-review">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-score">4.9</div>
+        <div class="review-count">18,240 reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div>
+    <div class="section-label">About Us</div>
+    <h2 class="section-h2">Education Reimagined for the Digital Age</h2>
+    <p class="section-sub">Founded in 2019, EduBright Academy was born from a simple belief: high-quality education should be accessible to everyone, everywhere. We partner with industry leaders to deliver curriculum that's current, practical, and career-focused.</p>
+
+    <div class="about-features">
+      <div class="about-feat">
+        <div class="feat-icon">🎯</div>
+        <div>
+          <div class="feat-title">Industry-Aligned Curriculum</div>
+          <div class="feat-desc">Every course is co-designed with companies that are actively hiring, so what you learn maps directly to real job requirements.</div>
+        </div>
+      </div>
+      <div class="about-feat">
+        <div class="feat-icon">🌍</div>
+        <div>
+          <div class="feat-title">Global Learning Community</div>
+          <div class="feat-desc">Join a thriving network of 50,000+ learners across 90+ countries, sharing ideas, projects, and opportunities.</div>
+        </div>
+      </div>
+      <div class="about-feat">
+        <div class="feat-icon">🏆</div>
+        <div>
+          <div class="feat-title">Recognized Certifications</div>
+          <div class="feat-desc">Our certificates are trusted by top employers globally — displayed on your LinkedIn with a verified badge.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <div class="about-block tall">
+      <div class="about-quote">"The best investment I ever made in myself."</div>
+      <div class="about-block-num">50K+</div>
+      <div class="about-block-lbl">Students Transformed</div>
+    </div>
+    <div class="about-block">
+      <div class="about-block-num">200+</div>
+      <div class="about-block-lbl">Expert-Led Courses</div>
+    </div>
+    <div class="about-block">
+      <div class="about-block-num">90+</div>
+      <div class="about-block-lbl">Countries Reached</div>
+    </div>
+    <div class="about-block">
+      <div class="about-block-num">4.9★</div>
+      <div class="about-block-lbl">Average Rating</div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="reveal">
+  <div class="courses-header">
+    <div>
+      <div class="section-label">Our Courses</div>
+      <h2 class="section-h2">Explore Top Programmes</h2>
+    </div>
+    <a href="#cta" class="btn-ghost">View All Courses →</a>
+  </div>
+
+  <div class="courses-grid">
+    <div class="course-card">
+      <div class="course-thumb teal">
+        💻
+        <div class="course-tag">Bestseller</div>
+      </div>
+      <div class="course-body">
+        <div class="course-title">Full-Stack Web Development</div>
+        <div class="course-desc">Master HTML, CSS, JavaScript, React, Node.js, and databases from scratch to deployment.</div>
+        <div class="course-meta">
+          <div class="course-rating"><span class="star">★</span> 4.9 · 12,400 students</div>
+          <div class="course-duration">⏱ 48 hours</div>
+        </div>
+        <div class="course-price">₹4,999 <button class="enroll-btn">Enroll Now</button></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb amber">
+        📊
+        <div class="course-tag">Trending</div>
+      </div>
+      <div class="course-body">
+        <div class="course-title">Data Science & Machine Learning</div>
+        <div class="course-desc">Python, Pandas, scikit-learn, and deep learning — go from zero to job-ready in 12 weeks.</div>
+        <div class="course-meta">
+          <div class="course-rating"><span class="star">★</span> 4.8 · 9,800 students</div>
+          <div class="course-duration">⏱ 60 hours</div>
+        </div>
+        <div class="course-price">₹5,499 <button class="enroll-btn">Enroll Now</button></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb rust">
+        🎨
+        <div class="course-tag">New</div>
+      </div>
+      <div class="course-body">
+        <div class="course-title">UI/UX Design Masterclass</div>
+        <div class="course-desc">Figma, design systems, user research, prototyping — build a portfolio that gets you hired.</div>
+        <div class="course-meta">
+          <div class="course-rating"><span class="star">★</span> 4.9 · 7,200 students</div>
+          <div class="course-duration">⏱ 36 hours</div>
+        </div>
+        <div class="course-price">₹3,999 <button class="enroll-btn">Enroll Now</button></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb slate">
+        ☁️
+        <div class="course-tag">Hot</div>
+      </div>
+      <div class="course-body">
+        <div class="course-title">Cloud Computing with AWS</div>
+        <div class="course-desc">EC2, S3, Lambda, and DevOps pipelines — prepare for the AWS Solutions Architect exam.</div>
+        <div class="course-meta">
+          <div class="course-rating"><span class="star">★</span> 4.7 · 6,500 students</div>
+          <div class="course-duration">⏱ 42 hours</div>
+        </div>
+        <div class="course-price">₹4,499 <button class="enroll-btn">Enroll Now</button></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb emerald">
+        📈
+        <div class="course-tag">Popular</div>
+      </div>
+      <div class="course-body">
+        <div class="course-title">Digital Marketing & SEO</div>
+        <div class="course-desc">Google Ads, Meta campaigns, SEO, analytics, and content strategy for real business growth.</div>
+        <div class="course-meta">
+          <div class="course-rating"><span class="star">★</span> 4.8 · 8,100 students</div>
+          <div class="course-duration">⏱ 30 hours</div>
+        </div>
+        <div class="course-price">₹2,999 <button class="enroll-btn">Enroll Now</button></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb violet">
+        🤖
+        <div class="course-tag">2025 Pick</div>
+      </div>
+      <div class="course-body">
+        <div class="course-title">AI & Prompt Engineering</div>
+        <div class="course-desc">Harness LLMs, build AI workflows, and craft prompts that produce extraordinary results.</div>
+        <div class="course-meta">
+          <div class="course-rating"><span class="star">★</span> 5.0 · 4,300 students</div>
+          <div class="course-duration">⏱ 20 hours</div>
+        </div>
+        <div class="course-price">₹3,499 <button class="enroll-btn">Enroll Now</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / HOW IT WORKS -->
+<section id="services" class="reveal">
+  <div style="text-align:center; margin-bottom:.5rem;">
+    <div class="section-label" style="text-align:center;">How It Works</div>
+    <h2 class="section-h2" style="text-align:center;">Your Learning Journey</h2>
+    <p class="section-sub" style="margin:0 auto; text-align:center;">Everything you need to succeed, in one seamless platform designed around your progress.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon si-amber">🔍</div>
+      <div class="service-title">Discover</div>
+      <div class="service-desc">Browse 200+ expert-crafted courses. Use our smart recommender to find the perfect learning path for your goals and current skill level.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon si-teal">🎓</div>
+      <div class="service-title">Learn</div>
+      <div class="service-desc">Engage with HD video lectures, interactive quizzes, live coding labs, and downloadable resources — all available 24/7 on any device.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon si-rust">🛠️</div>
+      <div class="service-title">Build</div>
+      <div class="service-desc">Apply your knowledge through real-world capstone projects reviewed by industry professionals. Build a portfolio you're proud to show.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon si-dark">🚀</div>
+      <div class="service-title">Launch</div>
+      <div class="service-desc">Earn your verified certificate, get matched with hiring partners, and access our exclusive career services team to land your dream role.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="reveal">
+  <div style="text-align:center;">
+    <div class="section-label" style="text-align:center;">Student Reviews</div>
+    <h2 class="section-h2" style="text-align:center;">What Our Learners Say</h2>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"The Full-Stack course completely changed my career. Within 3 months of completing it, I landed a ₹14 LPA developer role. The content is practical and the instructors are genuinely the best."</div>
+      <div class="testi-author">
+        <div class="testi-avatar av-1">R</div>
+        <div>
+          <div class="testi-name">Riya Sharma</div>
+          <div class="testi-role">Software Developer, Bangalore</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"I used to be intimidated by data science. After EduBright's programme, I'm now leading ML projects at a fintech startup. The hands-on labs made all the difference — no other platform comes close."</div>
+      <div class="testi-author">
+        <div class="testi-avatar av-2">A</div>
+        <div>
+          <div class="testi-name">Arjun Mehta</div>
+          <div class="testi-role">ML Engineer, Mumbai</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"As a working mother with limited time, I needed flexible learning. EduBright's mobile-friendly platform and bite-sized lessons let me upskill on my own schedule. Got my UX job within 4 months!"</div>
+      <div class="testi-author">
+        <div class="testi-avatar av-3">P</div>
+        <div>
+          <div class="testi-name">Priya Nair</div>
+          <div class="testi-role">UX Designer, Hyderabad</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"The AWS course is incredibly thorough. I passed my Solutions Architect exam on the first attempt — something many of my colleagues needed 2–3 tries to do. Worth every rupee."</div>
+      <div class="testi-author">
+        <div class="testi-avatar av-4">K</div>
+        <div>
+          <div class="testi-name">Karan Singh</div>
+          <div class="testi-role">Cloud Architect, Delhi NCR</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"I was a complete beginner in digital marketing. The EduBright course gave me both the theory and the tools to immediately launch and manage campaigns. My agency revenue doubled in 6 months."</div>
+      <div class="testi-author">
+        <div class="testi-avatar av-5">S</div>
+        <div>
+          <div class="testi-name">Sneha Patel</div>
+          <div class="testi-role">Founder, Growth Agency, Pune</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"The AI & Prompt Engineering course is ahead of everything I've seen. Practical, forward-thinking, and genuinely useful in my day-to-day work. I recommended it to my entire team immediately."</div>
+      <div class="testi-author">
+        <div class="testi-avatar av-6">V</div>
+        <div>
+          <div class="testi-name">Vikram Rao</div>
+          <div class="testi-role">Product Manager, Chennai</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section id="instructors" class="reveal">
+  <div style="text-align:center; margin-bottom:3rem;">
+    <div class="section-label" style="text-align:center;">Meet the Team</div>
+    <h2 class="section-h2" style="text-align:center;">Learn from the Best</h2>
+    <p class="section-sub" style="margin:0 auto; text-align:center;">Our instructors are industry veterans with decades of real-world experience — not just academics.</p>
+  </div>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-photo ip-1">👩‍💻</div>
+      <div class="inst-name">Dr. Ananya Bose</div>
+      <div class="inst-role">Senior Engineer, Google</div>
+      <div class="inst-courses">14 courses · 28K students</div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-photo ip-2">👨‍🔬</div>
+      <div class="inst-name">Prof. Rohan Kapoor</div>
+      <div class="inst-role">AI Researcher, IIT Delhi</div>
+      <div class="inst-courses">8 courses · 19K students</div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-photo ip-3">👩‍🎨</div>
+      <div class="inst-name">Meera Iyer</div>
+      <div class="inst-role">Head of Design, Swiggy</div>
+      <div class="inst-courses">6 courses · 14K students</div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-photo ip-4">👨‍💼</div>
+      <div class="inst-name">Siddharth Jain</div>
+      <div class="inst-role">Growth Lead, Razorpay</div>
+      <div class="inst-courses">5 courses · 11K students</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-label">Limited Time Offer — 40% Off All Courses</div>
+  <h2 class="cta-h2">Start Learning Today.<br>Change Your Tomorrow.</h2>
+  <p class="cta-sub">Join 50,000 students who are already building the skills for the careers of the future. First class is always free.</p>
+  <div class="cta-form">
+    <input type="email" class="cta-input" placeholder="Enter your email address">
+    <button class="cta-submit">Get Free Access →</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="contact-info">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-h2">We'd Love to Hear From You</h2>
+    <p>Whether you have questions about a course, need career guidance, or want to partner with us — our team is here to help.</p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Location</div>
+          <div class="ci-val">91 Springboard, Sector 44, Gurugram, Haryana</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div class="ci-label">Phone</div>
+          <div class="ci-val">+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-val">hello@edubrightacademy.in</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">🕐</div>
+        <div>
+          <div class="ci-label">Support Hours</div>
+          <div class="ci-val">Mon–Sat, 9am – 7pm IST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="contact-form">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label class="cf-label">First Name</label>
+          <input type="text" class="cf-input" placeholder="Riya">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Last Name</label>
+          <input type="text" class="cf-input" placeholder="Sharma">
+        </div>
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Email Address</label>
+        <input type="email" class="cf-input" placeholder="riya@email.com">
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">I'm Interested In</label>
+        <select class="cf-select">
+          <option>Full-Stack Web Development</option>
+          <option>Data Science & Machine Learning</option>
+          <option>UI/UX Design</option>
+          <option>Cloud Computing</option>
+          <option>Digital Marketing</option>
+          <option>AI & Prompt Engineering</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="cf-field">
+        <label class="cf-label">Message</label>
+        <textarea class="cf-textarea" placeholder="Tell us how we can help…"></textarea>
+      </div>
+      <button class="cf-btn">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="nav-logo">Edu<span style="color:var(--amber)">Bright</span> Academy</a>
+      <p>Empowering India's next generation of tech professionals, designers, and entrepreneurs through world-class online education.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#">Web Development</a></li>
+        <li><a href="#">Data Science</a></li>
+        <li><a href="#">UI/UX Design</a></li>
+        <li><a href="#">Cloud Computing</a></li>
+        <li><a href="#">Digital Marketing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press Kit</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Centre</a></li>
+        <li><a href="#">Community Forum</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 EduBright Academy. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">𝕏</a>
+      <a href="#" class="social-link">in</a>
+      <a href="#" class="social-link">▶</a>
+      <a href="#" class="social-link">📷</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Enroll buttons
+  document.querySelectorAll('.enroll-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.textContent = '✓ Added!';
+      btn.style.background = 'var(--teal)';
+      btn.style.color = 'white';
+      setTimeout(() => {
+        btn.textContent = 'Enroll Now';
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  });
+
+  // CTA form
+  document.querySelector('.cta-submit').addEventListener('click', () => {
+    const input = document.querySelector('.cta-input');
+    if (input.value) {
+      input.value = '';
+      input.placeholder = '🎉 You\'re in! Check your email.';
+    }
+  });
+
+  // Contact form
+  document.querySelector('.cf-btn').addEventListener('click', () => {
+    const btn = document.querySelector('.cf-btn');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--teal)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
